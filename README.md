@@ -18,3 +18,20 @@ Jika kita mengirimkan text melalui client, server akan mengembalikan pesan terse
 ![alt text](image-5.png)
 ### Experiment 2.2
 Selain port pada client, port listener yang ada di server juga perlu diubah. Listener berada pada main function dari `client.rs`, pada baris kode `let listener = TcpListener::bind("127.0.0.1:8080").await?;`
+
+### Experiment 2.3
+Untuk memodifikasi agar server mengirimkan ip dan port client, kita hanya perlu menambahkan address dari client yang mengirimkan pesan ke dalam response yang akan dikembalikan oleh server. Berikut adalah blok kode yang dimodifikasi.
+```rust
+if let Some(text) = msg.as_text() {
+    println!("From client {addr:?} {text:?}");
+    let message = format!("{addr}: {text}");
+    bcast_tx.send(message)?;
+}
+```
+Dalam blok kode di atas, ip dan port dari sender diformat menjadi bagian dari message yang akan dikirimkan server ke client.
+Berikut adalah screenshot outputnya
+#### Server
+![alt text](image-6.png)
+#### Client
+![alt text](image-7.png)
+![alt text](image-8.png)
