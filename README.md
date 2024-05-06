@@ -16,3 +16,5 @@ Ketika client dijalankan, maka server akan menerima connection yang ditampilkan 
 Jika kita mengirimkan text melalui client, server akan mengembalikan pesan tersebut kepada seluruh client. Server juga menampilkan pesan yang diterima dari client. Berikut adalah tampilan pada client 2 dan 3.
 ![alt text](image-4.png)
 ![alt text](image-5.png)
+### Experiment 2.2
+Selain port pada client, port listener yang ada di server juga perlu diubah. Listener berada pada main function dari `client.rs`, pada baris kode `let listener = TcpListener::bind("127.0.0.1:8080").await?;`
